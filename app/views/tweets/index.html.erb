@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
+<% @tweets.each do |tweet| %>
+
+ <td><%= l tweet.created_at %></td>
+
+<p><%= link_to tweet.massage %>
+   <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %>
+   <%= link_to '編集', "tweets/#{tweet.id}/edit" %>
+</p>
+
+
+<% end %>
+
+<p><%= link_to 'ツイートする', 'tweets/new' %></p>

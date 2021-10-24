@@ -7,9 +7,26 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>
-    <%= yield %>
+    
+    <div id="header">
+     <header>
+       <%= render "header"%>
+     </header>
+    </div>
+    
+    <div id="sidebar">
+      <%= render "sidebar"%>
+    </div>
+    
+    <div id= "tweets">
+       <%= yield %>
+    </div>
+    
+    
+    
   </body>
 </html>

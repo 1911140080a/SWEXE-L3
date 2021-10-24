@@ -9,10 +9,11 @@ class TweetsController < ApplicationController
     end
     
     def create
+        logger.debug "---------" + params[:tweet][:massage] + "---------"
         @tweet = Tweet.new(massage: params[:tweet][:massage], tdate: params[:tweet][:tdate])
         if @tweet.save
             flash[:notice] = "ツイートしました"
-            redirect_to'/'
+            redirect_to tweets_path
         else
             render 'new'
         end
@@ -20,9 +21,8 @@ class TweetsController < ApplicationController
     
     def destroy
         @tweet = Tweet.find(params[:id])
-        if @tweet.destroy
-            redirect_to'/'
-        end
+        @tweet.destroy
+        redirect_to tweets_path
     end
     
     def edit
@@ -32,7 +32,7 @@ class TweetsController < ApplicationController
     def update
         tweet = Tweet.find(params[:id])
         tweet.update(massage: params[:tweet][:massage], tdate: params[:tweet][:tdate])
-        redirect_to'/'
+        redirect_to root_path
     end
     
     def show
